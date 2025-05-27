@@ -2,16 +2,34 @@ import { Router } from "express";
 import userService from "./user.service.js";
 
 const router = Router();
-const { getAllUserService, getUserByIdService } = userService;
+const { getAllUserService, getUserByIdService, deleteUserByIdService } =
+  userService;
 
 router.get("/", async (req, res) => {
-  const users = await getAllUserService();
-  res.status(200).json({ users });
+  try {
+    const users = await getAllUserService(req.query);
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(404).json({ message: err.message });
+  }
 });
 
 router.get("/:id", async (req, res) => {
-  const user = await getUserByIdService(req.params.id);
-  res.status(200).json({ user });
+  try {
+    const user = await getUserByIdService(req.params.id);
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await deleteUserByIdService(req.params.id);
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
 export default router;
