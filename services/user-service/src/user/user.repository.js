@@ -23,6 +23,21 @@ const findUserByResetToken = (token) => {
   });
 };
 
+const findAllUsers = () => {
+  return prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      phone: true,
+      photo: true,
+      role: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 const updateResetToken = (userId, token, expiry) => {
   return prisma.user.update({
     where: { id: userId },
@@ -50,4 +65,5 @@ export default {
   updateResetToken,
   updatePassword,
   createUser,
+  findAllUsers,
 };
