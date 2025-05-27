@@ -15,17 +15,23 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String
-  email    String  @unique
-  password String
-  role     Role
-  phone    String
-  photo    String?
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  phone     String?
+  photo     String?
+  resetPasswordToken String?  @unique
+  resetTokenExpiry   DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {
   USER
   OWNER
   MANAGER
+  SUPER_ADMIN
+  ADMIN
 }
