@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: faiq
+      POSTGRES_PASSWORD: ukostdev123
+      POSTGRES_DB: ukost_user_db
+    ports:
+      - "5432:5432"
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
