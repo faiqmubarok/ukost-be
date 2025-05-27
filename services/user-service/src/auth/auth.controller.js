@@ -2,7 +2,12 @@ import { Router } from "express";
 import authService from "./auth.service.js";
 
 const router = Router();
-const { registerService, loginService } = authService;
+const {
+  registerService,
+  loginService,
+  resetPasswordService,
+  requestPasswordResetService,
+} = authService;
 
 router.post("/register", async (req, res) => {
   try {
@@ -51,6 +56,32 @@ router.post("/login", async (req, res) => {
     });
   } catch (error) {
     res.status(401).json({ message: error.message });
+  }
+});
+
+router.post("/forgot-password", async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ message: "Email is required" });
+
+  try {
+    await requestPasswordResetService(email);
+    res.status(200).json({ message: "Reset link sent to email" });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+router.post("/reset-password", async (req, res) => {
+  const { token, newPassword } = req.body;
+  if (!token || !newPassword) {
+    return res.status(400).json({ message: "Token and new password required" });
+  }
+
+  try {
+    await resetPasswordService(token, newPassword);
+    res.status(200).json({ message: "Password has been reset" });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 

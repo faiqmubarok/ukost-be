@@ -1,8 +1,16 @@
 import userRepository from "../user/user.repository.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
+import { sendResetPasswordEmail } from "../utils/email.js";
 
-const { findUserByEmail, createUser } = userRepository;
+const {
+  findUserByEmail,
+  createUser,
+  updateResetToken,
+  findUserByResetToken,
+  updatePassword,
+} = userRepository;
 
 const SALT_ROUNDS = 10;
 const JWT_SECRET = process.env.JWT_SECRET || "je2JDX1kLTYIMH0dUTwRSChwlaAXSwf3";
@@ -52,7 +60,30 @@ const loginService = async (email, password) => {
   };
 };
 
+const requestPasswordResetService = async (email) => {
+  const user = await findUserByEmail(email);
+  if (!user) throw new Error("User not found");
+
+  const token = crypto.randomBytes(32).toString("hex");
+  const expiry = new Date(Date.now() + 60 * 60 * 1000);
+
+  await updateResetToken(user.id, token, expiry);
+
+  const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${token}`;
+  await sendResetPasswordEmail(user.email, resetLink);
+};
+
+const resetPasswordService = async (token, newPassword) => {
+  const user = await findUserByResetToken(token);
+  if (!user) throw new Error("Token invalid or expired");
+
+  const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
+  await updatePassword(user.id, hashedPassword);
+};
+
 export default {
   registerService,
   loginService,
+  resetPasswordService,
+  requestPasswordResetService,
 };
