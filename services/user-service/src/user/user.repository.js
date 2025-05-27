@@ -14,6 +14,24 @@ const findUserByEmail = async (email) => {
   });
 };
 
+const findUserById = async (id) => {
+  return await prisma.user.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      phone: true,
+      photo: true,
+      role: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 const findUserByResetToken = (token) => {
   return prisma.user.findFirst({
     where: {
@@ -60,6 +78,7 @@ const updatePassword = (userId, hashedPassword) => {
 };
 
 export default {
+  findUserById,
   findUserByEmail,
   findUserByResetToken,
   updateResetToken,
