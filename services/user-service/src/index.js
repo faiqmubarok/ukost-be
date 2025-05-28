@@ -1,6 +1,6 @@
 import express from "express";
-import prisma from "./config/prisma.js";
 import authController from "./auth/auth.controller.js";
+import userController from "./user/user.controller.js";
 import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -14,13 +14,7 @@ app.use(cors());
 app.use(cookieParser());
 
 app.use("/auth", authController);
-
-app.get("/", async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.json({
-    users,
-  });
-});
+app.use("/", userController);
 
 app.listen(3001, () => {
   console.log("User Service running on port 3001");
