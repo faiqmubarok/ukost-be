@@ -112,6 +112,23 @@ const updatePassword = (userId, hashedPassword) => {
   });
 };
 
+export const updateUserById = async (id, data) => {
+  return await prisma.user.update({
+    where: { id },
+    data,
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      phone: true,
+      photo: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+};
+
 const deleteUser = (userId) => {
   return prisma.user.delete({
     where: { id: userId },
@@ -125,6 +142,7 @@ export default {
   updateResetToken,
   updatePassword,
   createUser,
+  updateUserById,
   findAllUsers,
   deleteUser,
 };
