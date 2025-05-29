@@ -1,5 +1,6 @@
 import express from "express";
 import prisma from "./config/prisma.js";
+import "./events/subscriber.js";
 
 const app = express();
 
