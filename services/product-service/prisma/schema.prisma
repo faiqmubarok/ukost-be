@@ -8,20 +8,157 @@ datasource db {
 }
 
 model Product {
-  id        String   @id @default(uuid()) @map("_id")
-  name      String
-  ownerId   String  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String        @id @default(uuid()) @map("_id")
+  name          String
+  ownerId       String
+  managerId     String
+  productName   String
+  image         String[]
+  description   String?
+  productType   ProductType
+  address       Address
+  specification Specification
+  facilities    Facilities
+  regulation    Regulation?     // Only for Kost
+  location      GeoLocation
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+enum ProductType {
+  KOST
+  KONTRAKAN
+}
+
+type Address {
+  street      String
+  rt          String
+  rw          String
+  village     String
+  subDistrict String
+  city        String
+  province    String
+  postalCode  String
+}
+
+type Specification {
+  rating        Rating
+  typeOccupant  TypeOccupant
+  electricity   Electricity @default(EXCLUDE)
+  speciousRoom  String
+  available     Int?        @default(0) // KOST only
+  roomCount     Int?        @default(0) // KONTRAKAN only
+  bathroomCount Int?        @default(0) // KONTRAKAN only
+}
+
+type Rating {
+  average Float @default(0)
+  count   Int   @default(0)
+}
+
+enum TypeOccupant {
+  PRIA
+  WANITA
+  CAMPUR
+}
+
+enum Electricity {
+  INCLUDE
+  EXCLUDE
+}
+
+type Facilities {
+  general   GeneralFacilities?     // KOST only
+  shareRoom ShareFacilities?       // KONTRAKAN only
+  private   FurnishedFacilities?   // For both Kost/Kontrakan
+  bathroom  BathroomFacilities
+}
+
+type GeneralFacilities {
+  livingRoom     Boolean @default(false)
+  diningRoom     Boolean @default(false)
+  prayerRoom     Boolean @default(false)
+  loungeRoom     Boolean @default(false)
+  dryingRoom     Boolean @default(false)
+  laundryRoom    Boolean @default(false)
+  kitchen        Boolean @default(false)
+  refrigerator   Boolean @default(false)
+  dispenser      Boolean @default(false)
+  washingMachine Boolean @default(false)
+  security       Boolean @default(false)
+  wifi           Boolean @default(false)
+  parkingBike    Boolean @default(false)
+  parkingCar     Boolean @default(false)
+}
+
+type ShareFacilities {
+  livingRoom  Boolean @default(false)
+  diningRoom  Boolean @default(false)
+  kitchen     Boolean @default(false)
+  prayerRoom  Boolean @default(false)
+  loungeRoom  Boolean @default(false)
+  dryingRoom  Boolean @default(false)
+  laundryRoom Boolean @default(false)
+  parkingBike Boolean @default(false)
+  parkingCar  Boolean @default(false)
+}
+
+type FurnishedFacilities {
+  refrigerator   Boolean @default(false)
+  dispenser      Boolean @default(false)
+  washingMachine Boolean @default(false)
+  bed            Boolean @default(false)
+  wardrobe       Boolean @default(false)
+  desk           Boolean @default(false)
+  chair          Boolean @default(false)
+  tv             Boolean @default(false)
+  ac             Boolean @default(false)
+  dressingTable  Boolean @default(false)
+  fan            Boolean @default(false)
+  empty          Boolean @default(false)
+}
+
+type BathroomFacilities {
+  type        BathroomType
+  toiletType  ToiletType
+  shower      Boolean @default(false)
+  bathtub     Boolean @default(false)
+  tub         Boolean @default(false)
+  waterHeater Boolean @default(false)
+  sink        Boolean @default(false)
+  bucket      Boolean @default(false)
+}
+
+enum BathroomType {
+  LUAR
+  DALAM
+}
+
+enum ToiletType {
+  JONGKOK
+  DUDUK
+}
+
+type Regulation {
+  married     Boolean @default(false)
+  together    Boolean @default(false)
+  oppositeSex Boolean @default(false)
+  pet         Boolean @default(false)
+  smoke       Boolean @default(false)
+}
+
+type GeoLocation {
+  latitude  Float
+  longitude Float
 }
 
 model UserReplica {
-  id     String  @id @map("_id")
-  name   String
-  email  String
-  role   Role
-  phone  String?
-  photo  String?
+  id    String  @id @map("_id")
+  name  String
+  email String
+  role  Role
+  phone String?
+  photo String?
 }
 
 enum Role {
