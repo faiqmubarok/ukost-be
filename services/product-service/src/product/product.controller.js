@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createProductSchema,
   productQuerySchema,
+  putProductSchema,
 } from "./product.validation.js";
 import productService from "./product.service.js";
 
@@ -11,6 +12,7 @@ const {
   getProductByIdService,
   deleteProductByIdService,
   findAllProductService,
+  updateProductByIdService,
 } = productService;
 
 router.get("/", async (req, res) => {
@@ -33,6 +35,34 @@ router.get("/:id", async (req, res) => {
     res.status(200).json(product);
   } catch (err) {
     res.status(404).json({ message: err.message });
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    if (!req.params.id) throw new Error("Product id is required");
+    const validated = await putProductSchema.validate(req.body, {
+      abortEarly: false,
+    });
+    const updated = await updateProductByIdService(
+      req.params.id,
+      validated,
+      true
+    );
+    res.status(200).json({ updated, message: "Product updated successfully" });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+router.patch("/:id", async (req, res) => {
+  try {
+    if (!req.params.id) throw new Error("Product id is required");
+    if (!req.body) throw new Error("Product data is required");
+    const updated = await updateProductByIdService(req.params.id, req.body);
+    res.status(200).json({ message: "Product updated successfully", updated });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 

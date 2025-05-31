@@ -68,6 +68,13 @@ const findAllProduct = async ({ search, type, occupant, page, limit }) => {
   };
 };
 
+const updateProductById = async (productId, data) => {
+  return await prisma.product.update({
+    where: { id: productId },
+    data,
+  });
+};
+
 const findProductById = async (productId) => {
   return await prisma.product.findUnique({
     where: { id: productId },
@@ -86,4 +93,5 @@ export default {
   findProductById,
   deleteProductById,
   findAllProduct,
+  updateProductById,
 };
