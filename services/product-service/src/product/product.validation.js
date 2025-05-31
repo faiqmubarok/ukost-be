@@ -84,3 +84,11 @@ export const createProductSchema = yup.object({
   regulation: regulationSchema.nullable(),
   location: geoLocationSchema.required(),
 });
+
+export const productQuerySchema = yup.object({
+  search: yup.string().optional(),
+  type: yup.mixed().oneOf(["KOST", "KONTRAKAN"]).optional(),
+  occupant: yup.mixed().oneOf(["PRIA", "WANITA", "CAMPUR"]).optional(),
+  page: yup.number().min(1).default(1),
+  limit: yup.number().min(1).max(100).default(10),
+});

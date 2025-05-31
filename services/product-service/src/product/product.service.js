@@ -5,7 +5,13 @@ const {
   findUserReplicaById,
   findProductById,
   deleteProductById,
+  findAllProduct,
 } = productRepository;
+
+const findAllProductService = async (query) => {
+  const products = findAllProduct(query);
+  return products;
+};
 
 const createProductService = async (payload) => {
   const ownerExists = await findUserReplicaById(payload.ownerId);
@@ -39,4 +45,5 @@ export default {
   createProductService,
   getProductByIdService,
   deleteProductByIdService,
+  findAllProductService,
 };

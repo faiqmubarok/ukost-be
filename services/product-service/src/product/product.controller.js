@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { createProductSchema } from "./product.validation.js";
+import {
+  createProductSchema,
+  productQuerySchema,
+} from "./product.validation.js";
 import productService from "./product.service.js";
 
 const router = Router();
@@ -7,7 +10,22 @@ const {
   createProductService,
   getProductByIdService,
   deleteProductByIdService,
+  findAllProductService,
 } = productService;
+
+router.get("/", async (req, res) => {
+  try {
+    const query = await productQuerySchema.validate(req.query, {
+      stripUnknown: true,
+      abortEarly: false,
+    });
+
+    const products = await findAllProductService(query);
+    res.status(200).json(products);
+  } catch (err) {
+    res.status(400).json({ message: "Invalid query", errors: err.errors });
+  }
+});
 
 router.get("/:id", async (req, res) => {
   try {
