@@ -1,0 +1,186 @@
+[
+  {
+    "productName": "Kost Putri Sakura",
+    "ownerId": "89c27fe6-27a5-4428-bc54-b42cd3be4d9e",
+    "managerId": "83263f28-4e59-47cc-9642-15d0f5a48e1c",
+    "image": ["https://example.com/kost1.jpg"],
+    "description": "Kost eksklusif untuk wanita, dekat kampus.",
+    "price": {
+      "monthly": 1000000
+    },
+    "productType": "KOST",
+    "address": {
+      "street": "Jl. Melati No.10",
+      "rt": "01",
+      "rw": "02",
+      "village": "Kelurahan A",
+      "subDistrict": "Kecamatan B",
+      "city": "Bandung",
+      "province": "Jawa Barat",
+      "postalCode": "40123"
+    },
+    "typeOccupant": "WANITA",
+    "electricity": "INCLUDE",
+    "speciousRoom": "3x4",
+    "available": 5,
+    "roomCount": null,
+    "bathroomCount": null,
+    "generalFacilities": {
+      "livingRoom": true,
+      "kitchen": true,
+      "wifi": true,
+      "parkingBike": true
+    },
+    "shareRoomFacilities": null,
+    "furnishedFacilities": {
+      "bed": true,
+      "wardrobe": true,
+      "desk": true,
+      "fan": true
+    },
+    "bathroomFacilities": {
+      "type": "DALAM",
+      "toiletType": "DUDUK",
+      "shower": true,
+      "bathtub": false,
+      "tub": false,
+      "waterHeater": true,
+      "sink": true,
+      "bucket": true
+    },
+    "regulation": {
+      "married": false,
+      "together": false,
+      "oppositeSex": false,
+      "pet": false,
+      "smoke": false
+    },
+    "location": {
+      "latitude": -6.914744,
+      "longitude": 107.60981
+    }
+  },
+  {
+    "productName": "Kost Pria Murah Meriah",
+    "ownerId": "89c27fe6-27a5-4428-bc54-b42cd3be4d9e",
+    "managerId": "83263f28-4e59-47cc-9642-15d0f5a48e1c",
+    "image": ["https://example.com/kost2.jpg"],
+    "description": "Kost murah untuk pria di pusat kota.",
+    "price": {
+      "sixMonth": 4000000,
+      "yearly": 8000000
+    },
+    "productType": "KOST",
+    "address": {
+      "street": "Jl. Kenanga No.7",
+      "rt": "03",
+      "rw": "01",
+      "village": "Kelurahan C",
+      "subDistrict": "Kecamatan D",
+      "city": "Yogyakarta",
+      "province": "DI Yogyakarta",
+      "postalCode": "55281"
+    },
+    "typeOccupant": "PRIA",
+    "electricity": "EXCLUDE",
+    "speciousRoom": "3x3",
+    "available": 3,
+    "roomCount": null,
+    "bathroomCount": null,
+    "generalFacilities": {
+      "kitchen": true,
+      "prayerRoom": true,
+      "parkingBike": true
+    },
+    "shareRoomFacilities": null,
+    "furnishedFacilities": {
+      "bed": true,
+      "wardrobe": true,
+      "fan": true,
+      "empty": false
+    },
+    "bathroomFacilities": {
+      "type": "LUAR",
+      "toiletType": "JONGKOK",
+      "shower": true,
+      "bathtub": false,
+      "tub": false,
+      "waterHeater": false,
+      "sink": false,
+      "bucket": true
+    },
+    "regulation": {
+      "married": false,
+      "together": false,
+      "oppositeSex": false,
+      "pet": false,
+      "smoke": true
+    },
+    "location": {
+      "latitude": -7.7956,
+      "longitude": 110.3695
+    }
+  },
+  {
+    "productName": "Kost Campur Nyaman",
+    "ownerId": "89c27fe6-27a5-4428-bc54-b42cd3be4d9e",
+    "managerId": "83263f28-4e59-47cc-9642-15d0f5a48e1c",
+    "image": ["https://example.com/kost3.jpg"],
+    "description": "Kost campur dengan fasilitas lengkap.",
+    "price": {
+      "yearly": 13000000
+    },
+    "productType": "KOST",
+    "address": {
+      "street": "Jl. Anggrek No.9",
+      "rt": "02",
+      "rw": "03",
+      "village": "Kelurahan E",
+      "subDistrict": "Kecamatan F",
+      "city": "Jakarta Selatan",
+      "province": "DKI Jakarta",
+      "postalCode": "12440"
+    },
+    "typeOccupant": "CAMPUR",
+    "electricity": "INCLUDE",
+    "speciousRoom": "3.5x4",
+    "available": 2,
+    "roomCount": null,
+    "bathroomCount": null,
+    "generalFacilities": {
+      "livingRoom": true,
+      "kitchen": true,
+      "wifi": true,
+      "security": true,
+      "parkingCar": true
+    },
+    "shareRoomFacilities": null,
+    "furnishedFacilities": {
+      "bed": true,
+      "wardrobe": true,
+      "tv": true,
+      "ac": true
+    },
+    "bathroomFacilities": {
+      "type": "DALAM",
+      "toiletType": "DUDUK",
+      "shower": true,
+      "bathtub": false,
+      "tub": false,
+      "waterHeater": true,
+      "sink": true,
+      "bucket": false
+    },
+    "regulation": {
+      "married": true,
+      "together": true,
+      "oppositeSex": true,
+      "pet": false,
+      "smoke": false
+    },
+    "location": {
+      "latitude": -6.2607,
+      "longitude": 106.7816
+    }
+  }
+]

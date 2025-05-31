@@ -8,21 +8,37 @@ datasource db {
 }
 
 model Product {
-  id            String        @id @default(uuid()) @map("_id")
-  name          String
-  ownerId       String
-  managerId     String
-  productName   String
-  image         String[]
-  description   String?
-  productType   ProductType
-  address       Address
-  specification Specification
-  facilities    Facilities
-  regulation    Regulation?     // Only for Kost
-  location      GeoLocation
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  id                  String               @id @default(uuid()) @map("_id")
+  productName         String
+  ownerId             String
+  managerId           String
+  image               String[]
+  description         String?
+  price               Price
+  productType         ProductType
+  address             Address
+  rating              Rating
+  typeOccupant        TypeOccupant
+  electricity         Electricity          @default(EXCLUDE)
+  speciousRoom        String
+  available           Int? // Nullable for KONTRAKAN
+  roomCount           Int? // Nullable for KOST
+  bathroomCount       Int? // Nullable for KOST
+  generalFacilities   GeneralFacilities? // Only for KOST
+  shareRoomFacilities ShareFacilities? // Only for KONTRAKAN
+  furnishedFacilities FurnishedFacilities? // Optional for both
+  bathroomFacilities  BathroomFacilities
+  regulation          Regulation? // Optional for KONTRAKAN
+  location            GeoLocation
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+}
+
+type Price {
+  monthly    Int?
+  threeMonth Int?
+  sixMonth   Int?
+  yearly     Int?
 }
 
 enum ProductType {
@@ -41,16 +57,6 @@ type Address {
   postalCode  String
 }
 
-type Specification {
-  rating        Rating
-  typeOccupant  TypeOccupant
-  electricity   Electricity @default(EXCLUDE)
-  speciousRoom  String
-  available     Int?        @default(0) // KOST only
-  roomCount     Int?        @default(0) // KONTRAKAN only
-  bathroomCount Int?        @default(0) // KONTRAKAN only
-}
-
 type Rating {
   average Float @default(0)
   count   Int   @default(0)
@@ -65,13 +71,6 @@ enum TypeOccupant {
 enum Electricity {
   INCLUDE
   EXCLUDE
-}
-
-type Facilities {
-  general   GeneralFacilities?     // KOST only
-  shareRoom ShareFacilities?       // KONTRAKAN only
-  private   FurnishedFacilities?   // For both Kost/Kontrakan
-  bathroom  BathroomFacilities
 }
 
 type GeneralFacilities {
@@ -121,12 +120,12 @@ type FurnishedFacilities {
 type BathroomFacilities {
   type        BathroomType
   toiletType  ToiletType
-  shower      Boolean @default(false)
-  bathtub     Boolean @default(false)
-  tub         Boolean @default(false)
-  waterHeater Boolean @default(false)
-  sink        Boolean @default(false)
-  bucket      Boolean @default(false)
+  shower      Boolean      @default(false)
+  bathtub     Boolean      @default(false)
+  tub         Boolean      @default(false)
+  waterHeater Boolean      @default(false)
+  sink        Boolean      @default(false)
+  bucket      Boolean      @default(false)
 }
 
 enum BathroomType {
