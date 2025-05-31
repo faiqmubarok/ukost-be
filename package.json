@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start-mongo": "./scripts/start-mongo.sh",
+    "stop-mongo": "./scripts/stop-mongo.sh",
     "dev": "concurrently \"npm run dev --prefix services/user-service\" \"npm run dev --prefix services/product-service\" \"nodemon src/index.js\""
   },
   "keywords": [],

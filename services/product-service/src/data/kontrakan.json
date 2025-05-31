@@ -1,0 +1,176 @@
+[
+  {
+    "productName": "Kontrakan Keluarga Harmonis",
+    "ownerId": "89c27fe6-27a5-4428-bc54-b42cd3be4d9e",
+    "managerId": "83263f28-4e59-47cc-9642-15d0f5a48e1c",
+    "image": ["https://example.com/kontrakan1.jpg"],
+    "description": "Kontrakan cocok untuk keluarga kecil.",
+    "price": {
+      "monthly": 2000000,
+      "yearly": 22000000
+    },
+    "productType": "KONTRAKAN",
+    "address": {
+      "street": "Jl. Merpati No.5",
+      "rt": "01",
+      "rw": "04",
+      "village": "Kelurahan X",
+      "subDistrict": "Kecamatan Y",
+      "city": "Depok",
+      "province": "Jawa Barat",
+      "postalCode": "16436"
+    },
+    "typeOccupant": "CAMPUR",
+    "electricity": "EXCLUDE",
+    "speciousRoom": "6x6",
+    "available": null,
+    "roomCount": 2,
+    "bathroomCount": 1,
+    "generalFacilities": null,
+    "shareRoomFacilities": {
+      "kitchen": true,
+      "livingRoom": true,
+      "parkingCar": true
+    },
+    "furnishedFacilities": {
+      "bed": false,
+      "wardrobe": false,
+      "empty": true
+    },
+    "bathroomFacilities": {
+      "type": "DALAM",
+      "toiletType": "DUDUK",
+      "shower": true,
+      "bathtub": false,
+      "tub": false,
+      "waterHeater": false,
+      "sink": true,
+      "bucket": true
+    },
+    "location": {
+      "latitude": -6.4025,
+      "longitude": 106.7942
+    }
+  },
+  {
+    "productName": "Kontrakan Minimalis",
+    "ownerId": "89c27fe6-27a5-4428-bc54-b42cd3be4d9e",
+    "managerId": "83263f28-4e59-47cc-9642-15d0f5a48e1c",
+    "image": ["https://example.com/kontrakan2.jpg"],
+    "description": "Kontrakan tipe 36 murah dan nyaman.",
+    "price": {
+      "yearly": 20000000
+    },
+    "productType": "KONTRAKAN",
+    "address": {
+      "street": "Jl. Cemara No.12",
+      "rt": "02",
+      "rw": "05",
+      "village": "Kelurahan Z",
+      "subDistrict": "Kecamatan W",
+      "city": "Tangerang",
+      "province": "Banten",
+      "postalCode": "15145"
+    },
+    "typeOccupant": "CAMPUR",
+    "electricity": "INCLUDE",
+    "speciousRoom": "5x6",
+    "available": null,
+    "roomCount": 2,
+    "bathroomCount": 1,
+    "generalFacilities": null,
+    "shareRoomFacilities": {
+      "kitchen": true,
+      "laundryRoom": true,
+      "parkingBike": true
+    },
+    "furnishedFacilities": {
+      "bed": true,
+      "wardrobe": true,
+      "ac": true
+    },
+    "bathroomFacilities": {
+      "type": "LUAR",
+      "toiletType": "JONGKOK",
+      "shower": true,
+      "bathtub": false,
+      "tub": false,
+      "waterHeater": false,
+      "sink": false,
+      "bucket": true
+    },
+    "regulation": {
+      "married": true,
+      "together": true,
+      "oppositeSex": true,
+      "pet": false,
+      "smoke": true
+    },
+    "location": {
+      "latitude": -6.1829,
+      "longitude": 106.7065
+    }
+  },
+  {
+    "productName": "Kontrakan Tengah Kota",
+    "ownerId": "89c27fe6-27a5-4428-bc54-b42cd3be4d9e",
+    "managerId": "83263f28-4e59-47cc-9642-15d0f5a48e1c",
+    "image": ["https://example.com/kontrakan3.jpg"],
+    "description": "Kontrakan di tengah kota, akses mudah ke mana saja.",
+    "price": {
+      "monthly": 2500000,
+      "yearly": 27000000
+    },
+    "productType": "KONTRAKAN",
+    "address": {
+      "street": "Jl. Mawar No.8",
+      "rt": "04",
+      "rw": "06",
+      "village": "Kelurahan Q",
+      "subDistrict": "Kecamatan R",
+      "city": "Bekasi",
+      "province": "Jawa Barat",
+      "postalCode": "17113"
+    },
+    "typeOccupant": "CAMPUR",
+    "electricity": "INCLUDE",
+    "speciousRoom": "6x8",
+    "available": null,
+    "roomCount": 3,
+    "bathroomCount": 2,
+    "generalFacilities": null,
+    "shareRoomFacilities": {
+      "kitchen": true,
+      "livingRoom": true,
+      "prayerRoom": true,
+      "parkingCar": true
+    },
+    "furnishedFacilities": {
+      "bed": true,
+      "tv": true,
+      "ac": true,
+      "refrigerator": true
+    },
+    "bathroomFacilities": {
+      "type": "DALAM",
+      "toiletType": "DUDUK",
+      "shower": true,
+      "bathtub": false,
+      "tub": false,
+      "waterHeater": true,
+      "sink": true,
+      "bucket": true
+    },
+    "regulation": {
+      "married": true,
+      "together": true,
+      "oppositeSex": true,
+      "pet": true,
+      "smoke": false
+    },
+    "location": {
+      "latitude": -6.2383,
+      "longitude": 106.9756
+    }
+  }
+]

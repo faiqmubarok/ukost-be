@@ -1,14 +1,12 @@
 import express from "express";
-import prisma from "./config/prisma.js";
+import "./events/subscriber.js";
+import productController from "./product/product.controller.js";
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  const products = await prisma.product.findMany();
-  res.json({ products });
-});
+app.use("/", productController);
 
 app.listen(3002, () => {
   console.log("Product Service running on port 3002");

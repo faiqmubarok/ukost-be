@@ -11,7 +11,7 @@ const {
 
 router.post("/register", async (req, res) => {
   try {
-    const { name, email, password, phone, photo } = req.body;
+    const { name, email, password, phone, photo, role } = req.body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -22,6 +22,7 @@ router.post("/register", async (req, res) => {
       email,
       password,
       phone,
+      role,
       photo,
     });
     res.status(201).json({ user, message: "User registered successfully" });

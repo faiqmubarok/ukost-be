@@ -1,6 +1,7 @@
 import prisma from "../config/prisma.js";
 
 const createUser = async (user) => {
+  console.log(user);
   return await prisma.user.create({
     data: user,
   });
