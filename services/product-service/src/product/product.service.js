@@ -1,7 +1,11 @@
 import productRepository from "./product.repository.js";
 
-const { createProduct, findUserReplicaById, findProductById } =
-  productRepository;
+const {
+  createProduct,
+  findUserReplicaById,
+  findProductById,
+  deleteProductById,
+} = productRepository;
 
 const createProductService = async (payload) => {
   const ownerExists = await findUserReplicaById(payload.ownerId);
@@ -25,7 +29,14 @@ const getProductByIdService = async (id) => {
   return product;
 };
 
+const deleteProductByIdService = async (id) => {
+  const product = await findProductById(id);
+  if (!product) throw new Error("Product not found");
+  return await deleteProductById(id);
+};
+
 export default {
   createProductService,
   getProductByIdService,
+  deleteProductByIdService,
 };

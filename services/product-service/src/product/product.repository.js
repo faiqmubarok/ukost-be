@@ -18,8 +18,15 @@ const findProductById = async (productId) => {
   });
 };
 
+const deleteProductById = async (productId) => {
+  return await prisma.product.delete({
+    where: { id: productId },
+  });
+};
+
 export default {
   createProduct,
   findUserReplicaById,
   findProductById,
+  deleteProductById,
 };

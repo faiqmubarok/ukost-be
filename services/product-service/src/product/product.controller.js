@@ -3,7 +3,11 @@ import { createProductSchema } from "./product.validation.js";
 import productService from "./product.service.js";
 
 const router = Router();
-const { createProductService, getProductByIdService } = productService;
+const {
+  createProductService,
+  getProductByIdService,
+  deleteProductByIdService,
+} = productService;
 
 router.get("/:id", async (req, res) => {
   try {
@@ -33,6 +37,15 @@ router.post("/", async (req, res) => {
     }
     console.error(error);
     return res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await deleteProductByIdService(req.params.id);
+    res.status(200).json({ message: "Product deleted successfully" });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 
