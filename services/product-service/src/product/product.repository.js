@@ -12,7 +12,14 @@ const findUserReplicaById = async (userId) => {
   });
 };
 
+const findProductById = async (productId) => {
+  return await prisma.product.findUnique({
+    where: { id: productId },
+  });
+};
+
 export default {
   createProduct,
   findUserReplicaById,
+  findProductById,
 };

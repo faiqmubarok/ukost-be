@@ -3,7 +3,16 @@ import { createProductSchema } from "./product.validation.js";
 import productService from "./product.service.js";
 
 const router = Router();
-const { createProductService } = productService;
+const { createProductService, getProductByIdService } = productService;
+
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await getProductByIdService(req.params.id);
+    res.status(200).json(product);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+});
 
 router.post("/", async (req, res) => {
   try {
