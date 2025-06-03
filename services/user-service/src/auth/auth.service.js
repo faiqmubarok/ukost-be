@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import { sendResetPasswordEmail } from "../utils/email.js";
+import { publishUserEvent } from "../events/publisher.js";
 
 const {
   findUserByEmail,
@@ -29,6 +30,17 @@ const registerService = async (userData) => {
     password: hashedPassword,
   });
 
+  if (["OWNER", "MANAGER"].includes(user.role)) {
+    await publishUserEvent("user_updated", {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      phone: user.phone,
+      photo: user.photo,
+    });
+  }
+  
   return user;
 };
 

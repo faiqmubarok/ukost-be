@@ -1,12 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -15,14 +8,159 @@ datasource db {
 }
 
 model Product {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String
-  image String
-  price Float
-  type Type
+  id                  String               @id @default(uuid()) @map("_id")
+  productName         String
+  ownerId             String
+  managerId           String
+  image               String[]
+  description         String?
+  price               Price
+  productType         ProductType
+  address             Address
+  rating              Rating
+  typeOccupant        TypeOccupant
+  electricity         Electricity          @default(EXCLUDE)
+  speciousRoom        String
+  available           Int? // Nullable for KONTRAKAN
+  roomCount           Int? // Nullable for KOST
+  bathroomCount       Int? // Nullable for KOST
+  generalFacilities   GeneralFacilities? // Only for KOST
+  shareRoomFacilities ShareFacilities? // Only for KONTRAKAN
+  furnishedFacilities FurnishedFacilities? // Optional for both
+  bathroomFacilities  BathroomFacilities
+  regulation          Regulation? // Optional for KONTRAKAN
+  location            GeoLocation
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
 }
 
-enum Type {
+type Price {
+  monthly    Int?
+  threeMonth Int?
+  sixMonth   Int?
+  yearly     Int?
+}
+
+enum ProductType {
   KOST
   KONTRAKAN
+}
+
+type Address {
+  street      String
+  rt          String
+  rw          String
+  village     String
+  subDistrict String
+  city        String
+  province    String
+  postalCode  String
+}
+
+type Rating {
+  average Float @default(0)
+  count   Int   @default(0)
+}
+
+enum TypeOccupant {
+  PRIA
+  WANITA
+  CAMPUR
+}
+
+enum Electricity {
+  INCLUDE
+  EXCLUDE
+}
+
+type GeneralFacilities {
+  livingRoom     Boolean @default(false)
+  diningRoom     Boolean @default(false)
+  prayerRoom     Boolean @default(false)
+  loungeRoom     Boolean @default(false)
+  dryingRoom     Boolean @default(false)
+  laundryRoom    Boolean @default(false)
+  kitchen        Boolean @default(false)
+  refrigerator   Boolean @default(false)
+  dispenser      Boolean @default(false)
+  washingMachine Boolean @default(false)
+  security       Boolean @default(false)
+  wifi           Boolean @default(false)
+  parkingBike    Boolean @default(false)
+  parkingCar     Boolean @default(false)
+}
+
+type ShareFacilities {
+  livingRoom  Boolean @default(false)
+  diningRoom  Boolean @default(false)
+  kitchen     Boolean @default(false)
+  prayerRoom  Boolean @default(false)
+  loungeRoom  Boolean @default(false)
+  dryingRoom  Boolean @default(false)
+  laundryRoom Boolean @default(false)
+  parkingBike Boolean @default(false)
+  parkingCar  Boolean @default(false)
+}
+
+type FurnishedFacilities {
+  refrigerator   Boolean @default(false)
+  dispenser      Boolean @default(false)
+  washingMachine Boolean @default(false)
+  bed            Boolean @default(false)
+  wardrobe       Boolean @default(false)
+  desk           Boolean @default(false)
+  chair          Boolean @default(false)
+  tv             Boolean @default(false)
+  ac             Boolean @default(false)
+  dressingTable  Boolean @default(false)
+  fan            Boolean @default(false)
+  empty          Boolean @default(false)
+}
+
+type BathroomFacilities {
+  type        BathroomType
+  toiletType  ToiletType
+  shower      Boolean      @default(false)
+  bathtub     Boolean      @default(false)
+  tub         Boolean      @default(false)
+  waterHeater Boolean      @default(false)
+  sink        Boolean      @default(false)
+  bucket      Boolean      @default(false)
+}
+
+enum BathroomType {
+  LUAR
+  DALAM
+}
+
+enum ToiletType {
+  JONGKOK
+  DUDUK
+}
+
+type Regulation {
+  married     Boolean @default(false)
+  together    Boolean @default(false)
+  oppositeSex Boolean @default(false)
+  pet         Boolean @default(false)
+  smoke       Boolean @default(false)
+}
+
+type GeoLocation {
+  latitude  Float
+  longitude Float
+}
+
+model UserReplica {
+  id    String  @id @map("_id")
+  name  String
+  email String
+  role  Role
+  phone String?
+  photo String?
+}
+
+enum Role {
+  OWNER
+  MANAGER
 }
